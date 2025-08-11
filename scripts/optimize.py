@@ -8,6 +8,8 @@ from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*')
 import os
 os.environ["WANDB_SILENT"] = "True"
+import sys
+sys.path.append("../")
 from lolbo.lolbo import LOLBOState
 from lolbo.latent_space_objective import LatentSpaceObjective
 try:
