@@ -12,7 +12,6 @@
 source ~/.bashrc
 source /users/6/gjers043/anaconda3/etc/profile.d/conda.sh
 
-conda init
 conda activate lolbo-env
 cd /users/6/gjers043/lolbo/scripts/
 CUDA_VISIBLE_DEVICES=0 python3 molecule_optimization.py --seed 1234 --task_id zale --max_string_length 400 --max_n_oracle_calls 120000 --bsz 10 - run_lolbo - done
