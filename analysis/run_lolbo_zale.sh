@@ -2,17 +2,33 @@
 
 # SETUP RESOURCE
 #SBATCH --time=20:00:00
-#SBATCH --ntasks=8
+#SBATCH --ntasks=16
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=gjers043@umn.edu
-#SBATCH -p v100
-#SBATCH --gres=gpu:v100:4
-#SBATCH --output=output_zale.txt
+#SBATCH -p msigpu
+#SBATCH --gres=gpu:a100:1
+#SBATCH --output=analysis/output/output_zale.txt
 
+# LOL-BO PARAMETERS
+GPU_DEVICES="0"
+SEED=87364
+TASK_ID=zale
+MAX_STRING_LENGTH=400
+MAX_N_ORACLE_CALLS=40000
+BATCH_SIZE=10
+
+# Locate Conda Profile and Environment
 source ~/.bashrc
 source /users/6/gjers043/anaconda3/etc/profile.d/conda.sh
 conda activate lolbo-env
 
+# Run LOL-BO
 cd /users/6/gjers043/lolbo/scripts/
 module load cuda
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 molecule_optimization.py --seed 1234 --task_id zale --max_string_length 400 --max_n_oracle_calls 120000 --bsz 10 - run_lolbo - done
+CUDA_VISIBLE_DEVICES=$GPU_DEVICES python3 molecule_optimization.py \
+    --seed $SEED \
+    --task_id $TASK_ID \
+    --max_string_length $MAX_STRING_LENGTH \
+    --max_n_oracle_calls $MAX_N_ORACLE_CALLS \
+    --bsz $BATCH_SIZE \
+    - run_lolbo - done

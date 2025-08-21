@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -159,6 +160,9 @@ def main():
     """
     Run analysis, reproduce LOLBO paper results.
     """
+
+    #TODO: refactor to accomodate processing and generating plots via the
+    #      command line (one for processing, one for plots) -> argparse?
 
     # Log p Task (512 max string length)
     logp_512_fpath = "output_logp_512.txt"
