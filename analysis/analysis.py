@@ -160,6 +160,39 @@ def main():
     Run analysis, reproduce LOLBO paper results.
     """
 
+    tasks = {
+        "zale": "Zaleplon MPO",
+        #"pdop": "Perindopril MPO",
+        #"rano": "Ranolazine MPO",
+        #"med1": "Median Molecules 1",
+        #"med2": "Median Molecules 2",
+        #"shop": "Scaffold Hop",
+        #"siga": "Sitagliptin MPO",
+    }
+
+    initial_bests = [0.59]
+
+    assert len(tasks) == len(initial_bests)
+
+    for i, (task_id, task) in enumerate(tasks.items()):
+        # Header
+        print(f"Analyzing {task} ({task_id}) Task ({i+1}/{len(tasks)})")
+
+        # Process Output
+        output = process_output(f"output/output_{task_id}.txt", task_id=task_id)
+
+        # Generate Plot
+        generate_plot(output=output,
+                      best_in_set=initial_bests[i],
+                      title=task,
+                      xlab="Number of Evaluations",
+                      ylab="Best Score Found (Higher is Better)",
+                      xlim=(0, np.max(np.array(list(output.keys()))) + 1000),
+                      ylim=(0, 1),
+                      fpath=f"plots/plot_{task_id}.png",
+                      verbose=False
+        )
+
     # Log p Task (512 max string length)
     #logp_512_fpath = "output/output_logp_512.txt"
     #logp_512_output = process_output(logp_512_fpath, task_id="logp")
@@ -172,24 +205,6 @@ def main():
     #              ylim=(0, 600),
     #              fpath="plots/plot_logp_512.png",
     #              verbose=False)
-
-    # Zaleplon MPO Task
-    zale_fpath = "output/output_zale.txt"
-    zale_output = process_output(zale_fpath, task_id="zale")
-    generate_plot(output=zale_output,
-                  best_in_set=0.59,
-                  title="Zaleplon MPO",
-                  xlab="Number of Steps",
-                  ylab="Best Score Found (Higher is Better)",
-                  xlim=(0, 50_000),
-                  ylim=(0.50, 0.80),
-                  fpath="plots/plot_zale.png",
-                  verbose=False)
-
-
-    # Perindopril MPO Task
-
-    # Ranolazine MPO Task
 
 if __name__ == "__main__":
     main()
