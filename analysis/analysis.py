@@ -1,4 +1,3 @@
-import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -161,11 +160,8 @@ def main():
     Run analysis, reproduce LOLBO paper results.
     """
 
-    #TODO: refactor to accomodate processing and generating plots via the
-    #      command line (one for processing, one for plots) -> argparse?
-
     # Log p Task (512 max string length)
-    logp_512_fpath = "output_logp_512.txt"
+    logp_512_fpath = "output/output_logp_512.txt"
     logp_512_output = process_output(logp_512_fpath, task_id="logp")
     generate_plot(output=logp_512_output,
                   best_in_set=4.52,
@@ -174,9 +170,7 @@ def main():
                   ylab="Best Score Found (Higher is Better)",
                   xlim=(0, 500),
                   ylim=(0, 600),
-                  fpath="plot_logp_512.png")
-
-    # Log p Task (default max string length [1024])
+                  fpath="plots/plot_logp_512.png")
 
     # Zaleplon MPO Task
 
