@@ -1,0 +1,5 @@
+[default]
+entity = bayesian-optimization
+project = lolbo-analysis
+base_url = https://api.wandb.ai
+

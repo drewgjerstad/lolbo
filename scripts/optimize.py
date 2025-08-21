@@ -159,6 +159,7 @@ class Optimize(object):
                 project=self.wandb_project_name,
                 entity=self.wandb_entity,
                 config={k: v for method_dict in self.method_args.values() for k, v in method_dict.items()},
+                mode="offline",
             ) 
             self.wandb_run_name = wandb.run.name
         else:
