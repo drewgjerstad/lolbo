@@ -7,14 +7,14 @@
 #SBATCH --mail-user=gjers043@umn.edu
 #SBATCH -p msigpu
 #SBATCH --gres=gpu:a100:1
-#SBATCH --output=analysis/output/output_zale.txt
+#SBATCH --output=analysis/output/output_siga.txt
 
 # LOL-BO PARAMETERS
 GPU_DEVICES="0"
 SEED=87364
-TASK_ID=zale
+TASK_ID=siga
 MAX_STRING_LENGTH=400
-MAX_N_ORACLE_CALLS=40000
+MAX_N_ORACLE_CALLS=50000
 BATCH_SIZE=10
 
 # Locate Conda Profile and Environment
