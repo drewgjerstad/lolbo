@@ -58,8 +58,8 @@ def expand_output(oracle_calls:np.array, best_scores:np.array)->tuple:
             Expanded best scores found array.
     """
 
-    oracle_calls_exp = np.arange(np.max(oracle_calls)) + 1  # 1-500
-    best_scores_exp = np.zeros_like(oracle_calls_exp)
+    oracle_calls_exp = np.arange(np.max(oracle_calls)) + 1
+    best_scores_exp = np.zeros_like(oracle_calls_exp, dtype=float)
 
     current_best = 0.0
     best_idx = 0
@@ -161,18 +161,31 @@ def main():
     """
 
     # Log p Task (512 max string length)
-    logp_512_fpath = "output/output_logp_512.txt"
-    logp_512_output = process_output(logp_512_fpath, task_id="logp")
-    generate_plot(output=logp_512_output,
-                  best_in_set=4.52,
-                  title="Penalized LogP (max_string_length=512)",
-                  xlab="Number of Steps",
-                  ylab="Best Score Found (Higher is Better)",
-                  xlim=(0, 500),
-                  ylim=(0, 600),
-                  fpath="plots/plot_logp_512.png")
+    #logp_512_fpath = "output/output_logp_512.txt"
+    #logp_512_output = process_output(logp_512_fpath, task_id="logp")
+    #generate_plot(output=logp_512_output,
+    #              best_in_set=4.52,
+    #              title="Penalized LogP (max_string_length=512)",
+    #              xlab="Number of Steps",
+    #              ylab="Best Score Found (Higher is Better)",
+    #              xlim=(0, 500),
+    #              ylim=(0, 600),
+    #              fpath="plots/plot_logp_512.png",
+    #              verbose=False)
 
     # Zaleplon MPO Task
+    zale_fpath = "output/output_zale.txt"
+    zale_output = process_output(zale_fpath, task_id="zale")
+    generate_plot(output=zale_output,
+                  best_in_set=0.59,
+                  title="Zaleplon MPO",
+                  xlab="Number of Steps",
+                  ylab="Best Score Found (Higher is Better)",
+                  xlim=(0, 50_000),
+                  ylim=(0.50, 0.80),
+                  fpath="plots/plot_zale.png",
+                  verbose=False)
+
 
     # Perindopril MPO Task
 
