@@ -137,7 +137,7 @@ def generate_plot(output:dict, best_in_set:float, title:str, xlab:str, ylab:str,
     if best_in_set:
         ax.hlines(best_in_set, xmin=xlim[0], xmax=xlim[1], colors=["k"],
                   linestyles=["dotted"],
-                  label=f"Best in Dataset ({best_in_set})")
+                  label=f"REINVENT SELFIES Baseline ({best_in_set})")
 
     # Plot Features
     ax.set_xlim(xlim[0], xlim[1])
@@ -170,14 +170,14 @@ def main():
         "siga": "Sitagliptin MPO",
     }
 
-    initial_bests = {
-        "zale": 0.59,
-        "pdop": 0,
-        "rano": 0,
-        "med1": 0,
-        "med2": 0,
-        "shop": 0,
-        "siga": 0
+    initial_bests = {       # best average REINVENT SELFIES results
+        "zale": 0.333,
+        "pdop": 0.517,
+        "rano": 0.748,
+        "med1": 0.355,
+        "med2": 0.255,
+        "shop": None,
+        "siga": 0.194,
     }
 
     for i, (task_id, task) in enumerate(tasks.items()):
@@ -189,7 +189,7 @@ def main():
 
         # Generate Plot
         generate_plot(output=output,
-                      best_in_set=initial_bests[task_id],
+                      best_in_set=float(initial_bests[task_id]),
                       title=task,
                       xlab="Number of Evaluations",
                       ylab="Best Score Found (Higher is Better)",
