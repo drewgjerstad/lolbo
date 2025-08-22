@@ -162,17 +162,23 @@ def main():
 
     tasks = {
         "zale": "Zaleplon MPO",
-        #"pdop": "Perindopril MPO",
-        #"rano": "Ranolazine MPO",
-        #"med1": "Median Molecules 1",
-        #"med2": "Median Molecules 2",
+        "pdop": "Perindopril MPO",
+        "rano": "Ranolazine MPO",
+        "med1": "Median Molecules 1",
+        "med2": "Median Molecules 2",
         #"shop": "Scaffold Hop",
-        #"siga": "Sitagliptin MPO",
+        "siga": "Sitagliptin MPO",
     }
 
-    initial_bests = [0.59]
-
-    assert len(tasks) == len(initial_bests)
+    initial_bests = {
+        "zale": 0.59,
+        "pdop": 0,
+        "rano": 0,
+        "med1": 0,
+        "med2": 0,
+        "shop": 0,
+        "siga": 0
+    }
 
     for i, (task_id, task) in enumerate(tasks.items()):
         # Header
@@ -183,7 +189,7 @@ def main():
 
         # Generate Plot
         generate_plot(output=output,
-                      best_in_set=initial_bests[i],
+                      best_in_set=initial_bests[task_id],
                       title=task,
                       xlab="Number of Evaluations",
                       ylab="Best Score Found (Higher is Better)",
